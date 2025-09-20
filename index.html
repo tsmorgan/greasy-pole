@@ -4,121 +4,7 @@
         <meta charset="UTF-8">
         <title>Climber Sequence Game + Sine Wave Water</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <style>
-            body,
-            html {
-                margin: 0;
-                padding: 0;
-                height: 100%;
-                overflow: hidden;
-                background: #f0f0f0;
-                font-family: monospace;
-            }
-            canvas {
-                display: block;
-                background: #f0f0f0;
-            }
-            .button-grid {
-                position: absolute;
-                bottom: 100px;
-                left: 50%;
-                width: 76%;
-                transform: translateX(-50%);
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 20px;
-                transition: opacity 0.25s ease-out;
-            }
-            .button-grid.hidden {
-                opacity: 0;
-                pointer-events: none;
-                transition: opacity 0.25s ease-in;
-            }
-            .button-row {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-                width: 100%;
-            }
-            button {
-                width: 64px;
-                height: 64px;
-                font-size: 1.5rem;
-                cursor: pointer;
-                background-color: #ccc;
-                transition: background-color 0.25s ease;
-            }
-            .correct {
-                background-color: lightgreen !important;
-                pointer-events: none;
-                transition: none;
-            }
-            .wrong {
-                background-color: red !important;
-            }
-            .flash-message {
-                position: absolute;
-                top: 150px;
-                left: 50%;
-                transform: translateX(-50%);
-                font-size: 2rem;
-                font-weight: bold;
-                color: white;
-                background: rgba(0, 0, 0, 0.7);
-                padding: 1rem 2rem;
-                border-radius: 10px;
-                pointer-events: none;
-                z-index: 10;
-                opacity: 0;
-                transition: opacity 1.5s ease;
-                text-wrap: nowrap;
-            }
-            .flash-show {
-                opacity: 1;
-            }
-            .status {
-                position: absolute;
-                top: 10px;
-                left: 10px;
-                color: #000;
-            }
-            .choice-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.6);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 20;
-                color: white;
-                font-size: 1.5rem;
-            }
-            .choice-buttons {
-                margin-top: 20px;
-                display: flex;
-                gap: 10px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .choice-overlay button {
-                width: auto;
-                height: auto;
-                margin: 5px;
-                padding: 10px 20px;
-                font-size: 1.2rem;
-                background: #444;
-                color: white;
-            }
-            #choicelabel {
-                width: 100%;
-                text-align: center;
-                text-wrap: pretty;
-            }
-        </style>
+        <link rel="stylesheet" href="styles.css">
     </head>
     <body>
         <canvas id="liquidCanvas"></canvas>
@@ -361,12 +247,12 @@
                     ctx.lineTo(width, y);
                     ctx.lineTo(width, height);
                     ctx.closePath();
-                    ctx.fillStyle = '#4da6ffca';
+                    ctx.fillStyle = '#3278f07F';
                     ctx.fill();
                 }
 
                 drawWave(1);
-                ctx.fillStyle = '#ff0000';
+                ctx.fillStyle = '#f04c32';
                 ctx.fillRect(boxX, boxY, boxWidth, boxWidth);
                 drawWave(1.3);
 
@@ -387,7 +273,8 @@
 
                 if (!gameOver && !gamePaused && gameStartTime) 
                     elapsedTime = ((Date.now() - gameStartTime) / 1000).toFixed(1);
-                statusDiv.innerHTML = `Water Y: ${baseY.toFixed(0)} (Dest: ${destY.toFixed(0)})<br>Status: ${status}<br>Time: ${elapsedTime || 0}s<br>Flash: ${flashMessage}`;
+                
+                // statusDiv.innerHTML = `Water Y: ${baseY.toFixed(0)} (Dest: ${destY.toFixed(0)})<br>Status: ${status}<br>Time: ${elapsedTime || 0}s<br>Flash: ${flashMessage}`;
 
                 t += speed;
                 requestAnimationFrame(draw);

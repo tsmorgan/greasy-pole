@@ -1,0 +1,123 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: monospace;
+  --base-col: #3278f0;
+  --green: #baf032;
+  --red: #f04c32;
+  --light: #cfd7e6;
+  --light-button: #cfd7e67f;
+  background: var(--light);
+  background: linear-gradient(
+    180deg,
+    rgba(207, 215, 230, 1) 0%,
+    rgba(255, 242, 242, 1) 100%
+  );
+}
+canvas {
+  display: block;
+}
+.button-grid {
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  width: 76%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  transition: opacity 0.25s ease-out;
+}
+.button-grid.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease-in;
+}
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+button {
+  width: 64px;
+  height: 64px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: var(--light-button);
+  transition: background-color 0.25s ease;
+}
+.correct {
+  background-color: var(--green) !important;
+  pointer-events: none;
+  transition: none;
+}
+.wrong {
+  background-color: var(--red) !important;
+}
+.flash-message {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  background: var(--red);
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  text-wrap: nowrap;
+}
+.flash-show {
+  opacity: 1;
+}
+.status {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #000;
+}
+.choice-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+  color: white;
+  font-size: 1.5rem;
+}
+.choice-buttons {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.choice-overlay button {
+  width: auto;
+  height: auto;
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background: #444;
+  color: white;
+}
+#choicelabel {
+  width: 100%;
+  text-align: center;
+  text-wrap: pretty;
+}
