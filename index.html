@@ -47,7 +47,7 @@
             let t = 0;
             let baseY;
             let destY;
-            const riseSpeed = Math.round(100 * canvas.height / 7500)/100;
+            const riseSpeed = Math.round(100 * canvas.height / 10000) / 100;
             console.log(riseSpeed)
             let elapsedTime;
 
@@ -179,7 +179,7 @@
                     btnElem
                         .classList
                         .add('wrong');
-                    setTimeout(() => btnElem.classList.remove('wrong'), 1000);
+                    setTimeout(() => btnElem.classList.remove('wrong'), 500);
                     buttons.forEach(b => {
                         if (b.correct) {
                             document
@@ -213,15 +213,16 @@
             resizeCanvas();
 
             const statusDiv = document.getElementById('status');
+            const boxWidth = 50;
+            const width = canvas.width;
+            const height = canvas.height;
+            const boxX = width / 2 - boxWidth / 2;
+            const boxY = 2 * height / 7 - boxWidth / 2; // square in center
+            const floorX = boxX + (boxWidth / 2);
+            const floorY = boxY + (boxWidth / 2)
 
             function draw() {
-                const width = canvas.width;
-                const height = canvas.height;
                 ctx.clearRect(0, 0, width, height);
-
-                const boxWidth = 50;
-                const boxX = width / 2 - boxWidth / 2;
-                const boxY = 2 * height / 7 - boxWidth / 2; // square in center
 
                 if (!gameOver && !gamePaused) {
                     destY -= riseSpeed; // water always rises slowly
@@ -247,13 +248,51 @@
                     ctx.lineTo(width, y);
                     ctx.lineTo(width, height);
                     ctx.closePath();
+                    // ctx.fillStyle = '#3278f07F';
                     ctx.fillStyle = '#3278f07F';
                     ctx.fill();
                 }
 
-                drawWave(1);
-                ctx.fillStyle = '#f04c32';
-                ctx.fillRect(boxX, boxY, boxWidth, boxWidth);
+                function drawCircle(x, y) {
+                    const radius = 5; // 10px diameter
+                    ctx.beginPath();
+                    ctx.arc(x, y, radius, 0, Math.PI * 2);
+                    ctx.fillStyle = '#000';
+                    ctx.fill();
+                }
+
+                drawWave(1);                
+
+                let mid = width/2;
+                let pull = height/4;
+                let ext = height/2;
+
+                ctx.beginPath();
+                ctx.moveTo(-ext, height);
+                ctx.bezierCurveTo(mid, height, width/2 - pull, floorY, floorX - (boxWidth / 2), floorY + 5);
+                ctx.lineTo(floorX + (boxWidth / 2), floorY + 5);
+                ctx.bezierCurveTo(mid + pull, floorY, mid, height, width + ext, height);
+                ctx.closePath();
+                //ctx.fillStyle = '#c9dd7dff';
+                ctx.fillStyle = '#ffffff';  
+                ctx.fill();
+
+                drawCircle(width / 2, height);
+                drawCircle( width/2 - height, floorY);
+                drawCircle( width/2 + height, floorY);
+                drawCircle( width / 2, height);
+
+                const roofH = boxWidth * 0.6;
+                //ctx.fillStyle = '#a12b1f';
+                ctx.fillStyle = 'black';
+                ctx.fillRect(boxX, boxY - 2, boxWidth, (7 * boxWidth / 10));
+                ctx.beginPath();
+                ctx.moveTo(boxX - (boxWidth / 5), boxY);
+                ctx.lineTo(boxX + boxWidth / 2, boxY - roofH);
+                ctx.lineTo((boxWidth / 5) + boxX + boxWidth, boxY);
+                ctx.fill();
+                ctx.closePath();
+
                 drawWave(1.3);
 
                 let status = 'OVER';
