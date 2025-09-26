@@ -2,8 +2,11 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Climber Sequence Game + Sine Wave Water</title>
+        <title>House on a hill</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
@@ -73,6 +76,8 @@
                         .add('persistent');
                 }
             }
+
+            showFlash('testing');
 
             function shuffleArray(array) {
                 const arr = [...array];
@@ -261,26 +266,26 @@
                     ctx.fill();
                 }
 
-                drawWave(1);                
+                drawWave(1);
 
-                let mid = width/2;
-                let pull = height/4;
-                let ext = height/2;
+                let mid = width / 2;
+                let pull = height / 4;
+                let ext = height / 2;
 
                 ctx.beginPath();
                 ctx.moveTo(-ext, height);
-                ctx.bezierCurveTo(mid, height, width/2 - pull, floorY, floorX - (boxWidth / 2), floorY + 5);
+                ctx.bezierCurveTo(mid, height, width / 2 - pull, floorY, floorX - (boxWidth / 2), floorY + 5);
                 ctx.lineTo(floorX + (boxWidth / 2), floorY + 5);
                 ctx.bezierCurveTo(mid + pull, floorY, mid, height, width + ext, height);
                 ctx.closePath();
                 //ctx.fillStyle = '#c9dd7dff';
-                ctx.fillStyle = '#ffffff';  
+                ctx.fillStyle = '#ffffff';
                 ctx.fill();
 
                 drawCircle(width / 2, height);
-                drawCircle( width/2 - height, floorY);
-                drawCircle( width/2 + height, floorY);
-                drawCircle( width / 2, height);
+                drawCircle(width / 2 - height, floorY);
+                drawCircle(width / 2 + height, floorY);
+                drawCircle(width / 2, height);
 
                 const roofH = boxWidth * 0.6;
                 //ctx.fillStyle = '#a12b1f';
