@@ -1,5 +1,8 @@
 body,
 html {
+  font-family: "Barriecito", system-ui;
+  font-weight: 400;
+  font-style: normal;
   margin: 0;
   padding: 0;
   height: 100%;
@@ -17,9 +20,6 @@ html {
     rgba(207, 215, 230, 1) 0%,
     rgba(255, 242, 242, 1) 100%
   );
-  font-family: "Rubik Moonrocks", sans-serif;
-  font-weight: 400;
-  font-style: normal;
 }
 canvas {
   display: block;
