@@ -41,12 +41,6 @@ canvas {
   pointer-events: none;
   transition: opacity 0.25s ease-in;
 }
-.button-row {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  width: 100%;
-}
 button,
 button:focus,
 button:active {

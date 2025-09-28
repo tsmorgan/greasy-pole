@@ -36,12 +36,6 @@ export class ButtonGrid {
 
   createButtons(buttons, handleClick) {
     this.grid.innerHTML = "";
-    const row1 = document.createElement("div");
-    row1.className = "button-row";
-    const row2 = document.createElement("div");
-    row2.className = "button-row";
-
-    const midpoint = Math.ceil(buttons.length / 2);
 
     const createButton = (b) => {
       const btn = document.createElement("button");
@@ -51,15 +45,37 @@ export class ButtonGrid {
       return btn;
     };
 
-    buttons.slice(0, midpoint).forEach((b) => {
-      row1.appendChild(createButton(b));
+    buttons.forEach((b) => {
+      this.grid.appendChild(createButton(b));
     });
-
-    buttons.slice(midpoint).forEach((b) => {
-      row2.appendChild(createButton(b));
-    });
-
-    this.grid.appendChild(row1);
-    this.grid.appendChild(row2);
   }
+
+  // createButtonsTwoRows(buttons, handleClick) {
+  //   this.grid.innerHTML = "";
+  //   const row1 = document.createElement("div");
+  //   row1.className = "button-row";
+  //   const row2 = document.createElement("div");
+  //   row2.className = "button-row";
+
+  //   const midpoint = Math.ceil(buttons.length / 2);
+
+  //   const createButton = (b) => {
+  //     const btn = document.createElement("button");
+  //     btn.id = b.id;
+  //     btn.textContent = b.letter;
+  //     btn.onclick = () => handleClick(b);
+  //     return btn;
+  //   };
+
+  //   buttons.slice(0, midpoint).forEach((b) => {
+  //     row1.appendChild(createButton(b));
+  //   });
+
+  //   buttons.slice(midpoint).forEach((b) => {
+  //     row2.appendChild(createButton(b));
+  //   });
+
+  //   this.grid.appendChild(row1);
+  //   this.grid.appendChild(row2);
+  // }
 }
