@@ -52,7 +52,7 @@ export class Canvas {
 
   drawHouse(boxX, boxY, boxWidth) {
     const roofH = boxWidth * 0.6;
-    this.ctx.fillStyle = "black";
+    this.ctx.fillStyle = "#a12b1f";
     this.ctx.fillRect(boxX, boxY - 2, boxWidth, (7 * boxWidth) / 10);
     this.ctx.beginPath();
     this.ctx.moveTo(boxX - boxWidth / 5, boxY);

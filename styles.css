@@ -1,3 +1,8 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 body,
 html {
   font-family: "Barriecito", system-ui;
@@ -68,15 +73,16 @@ button:hover {
 }
 .flash-message {
   position: absolute;
-  top: 47%;
+  top: 35%;
+  width: 100%;
+  box-sizing: border-box;
   font-size: 3rem;
   font-weight: bold;
-  text-align:center;
-  margin:0 20px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
   color: black;
   text-transform: uppercase;
-  padding: 1.5rem 4rem;
-  border-radius: 2rem;
   pointer-events: none;
   z-index: 10;
   opacity: 0;
