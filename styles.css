@@ -28,13 +28,14 @@ canvas {
   position: absolute;
   bottom: 100px;
   left: 50%;
-  width: 76%;
   transform: translateX(-50%);
+  transition: opacity 0.25s ease-out;
+}
+.button-row {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
-  transition: opacity 0.25s ease-out;
+  margin-bottom: 20px;
 }
 .button-grid.hidden {
   opacity: 0;
@@ -44,7 +45,7 @@ canvas {
 button,
 button:focus,
 button:active {
-  width: 64px;
+  min-width: 64px;
   height: 64px;
   font-size: 1.5rem;
   cursor: pointer;

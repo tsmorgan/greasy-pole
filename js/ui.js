@@ -45,8 +45,18 @@ export class ButtonGrid {
       return btn;
     };
 
-    buttons.forEach((b) => {
-      this.grid.appendChild(createButton(b));
+    let max = 3;
+    if (buttons.length == 4) max = 2;
+    if (buttons.length == 7) max = 4;
+
+    let row;
+    buttons.forEach((b, i) => {
+      if (i%max == 0) {
+        row = document.createElement("div");
+        row.className = "button-row";
+        this.grid.appendChild(row);
+      }
+      row.appendChild(createButton(b));
     });
   }
 
