@@ -69,10 +69,10 @@ button:hover {
 .flash-message {
   position: absolute;
   top: 47%;
-  left: 50%;
-  transform: translateX(-50%);
   font-size: 3rem;
   font-weight: bold;
+  text-align:center;
+  margin:0 20px;
   color: black;
   text-transform: uppercase;
   padding: 1.5rem 4rem;
@@ -81,10 +81,6 @@ button:hover {
   z-index: 10;
   opacity: 0;
   transition: opacity 1.5s ease;
-  text-wrap: nowrap;
-  /* background: var(--base); */
-  /* border: 5px solid var(--red); */
-  /* box-shadow: #4444 0px 4px 8px; */
 }
 .flash-show {
   opacity: 1;
