@@ -15,6 +15,7 @@ export class StatusMessage {
 
 export class FlashMessage {
   constructor() {
+    this.flashDiv = document.getElementById("flash");
     this.flashTimeout = null;
     this.flashMessage = "";
   }
