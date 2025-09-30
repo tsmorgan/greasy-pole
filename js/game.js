@@ -8,7 +8,7 @@ import {
   updatePixelConstants,
 } from "./constants.js";
 import { shuffleArray } from "./utils.js";
-import { FlashMessage, ButtonGrid } from "./ui.js";
+import { FlashMessage, ButtonGrid, StatusMessage } from "./ui.js";
 import { Canvas } from "./canvas.js";
 
 export class Game {
@@ -16,6 +16,7 @@ export class Game {
     this.canvas = new Canvas();
     this.flashMessage = new FlashMessage();
     this.buttonGrid = new ButtonGrid();
+    this.statusMessage = new StatusMessage();
 
     this.buttons = [];
     this.targetSequence = [];
@@ -39,7 +40,7 @@ export class Game {
     this.t = 0;
     this.baseY = this.canvas.height;
     this.destY = this.baseY;
-    this.riseSpeed = Math.round((100 * this.canvas.height) / 10000) / 76;
+    this.riseSpeed = Math.round((100 * this.canvas.height) / 10000) / 27;
     this.elapsedTime = 0;
 
     console.log("Rise speed:", this.riseSpeed);

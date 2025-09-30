@@ -1,6 +1,20 @@
+export class StatusMessage {
+  constructor() {
+    this.statusDiv = document.getElementById("status");
+  }
+
+  show(msg) {
+    this.statusDiv.textContent = msg;
+    this.statusDiv.classList.add("status-show");
+  }
+
+  hide() {
+    this.statusDiv.classList.remove("status-show");
+  }
+}
+
 export class FlashMessage {
   constructor() {
-    this.flashDiv = document.getElementById("flash");
     this.flashTimeout = null;
     this.flashMessage = "";
   }
