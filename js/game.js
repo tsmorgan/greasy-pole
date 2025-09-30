@@ -25,6 +25,17 @@ export class Game {
     this.gameStartTime = null;
     this.gamePaused = true;
 
+    // Performance optimization
+    this.lastFrameTime = 0;
+    this.targetFPS = 60;
+    this.frameInterval = 1000 / this.targetFPS;
+
+    // Reduce FPS when not focused
+    document.addEventListener("visibilitychange", () => {
+      this.targetFPS = document.hidden ? 30 : 60;
+      this.frameInterval = 1000 / this.targetFPS;
+    });
+
     this.t = 0;
     this.baseY = this.canvas.height;
     this.destY = this.baseY;
@@ -120,7 +131,13 @@ export class Game {
     }
   }
 
-  draw() {
+  draw(currentTime) {
+    requestAnimationFrame((time) => this.draw(time));
+
+    // Frame rate control
+    if (currentTime - this.lastFrameTime < this.frameInterval) return;
+    this.lastFrameTime = currentTime;
+
     this.canvas.clear();
 
     if (!this.gameOver && !this.gamePaused) {
@@ -143,7 +160,7 @@ export class Game {
     // Check game state
     if (this.boxY > this.baseY) {
       if (!this.gamePaused) {
-        this.underTimer += 1 / 60;
+        this.underTimer += 1 / this.targetFPS; // Adjust for frame rate
         if (this.underTimer >= 5 && !this.gameOver) {
           this.gameOver = true; // YOU LOSE
           this.flashMessage.show("Game Over!", true);
@@ -158,7 +175,7 @@ export class Game {
       this.elapsedTime = ((Date.now() - this.gameStartTime) / 1000).toFixed(1);
     }
 
-    this.t += 1.5; // wave animation speed
-    requestAnimationFrame(() => this.draw());
+    // Adjust wave animation speed based on frame rate
+    this.t += 1.5 * (60 / this.targetFPS);
   }
 }

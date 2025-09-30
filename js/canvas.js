@@ -27,14 +27,17 @@ export class Canvas {
   drawWave(baseY, t, alter = 1) {
     const amplitude = Math.max(10, this.height * 0.02);
     const wavelength = 130;
+    const stepSize = Math.max(50, Math.floor(this.width / 20)); // Adaptive step size
 
     this.ctx.beginPath();
     this.ctx.moveTo(0, this.height);
     let y;
-    for (let x = 1; x <= this.width; x += 50) {
+    for (let x = 0; x <= this.width; x += stepSize) {
       y = baseY + Math.sin((x * alter + t) / wavelength) * amplitude;
       this.ctx.lineTo(x, y);
     }
+    // Calculate the final y position exactly at the right edge
+    y = baseY + Math.sin((this.width * alter + t) / wavelength) * amplitude;
     this.ctx.lineTo(this.width, y);
     this.ctx.lineTo(this.width, this.height);
     this.ctx.closePath();
