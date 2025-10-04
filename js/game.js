@@ -5,6 +5,7 @@ import {
   WRONG_PX,
   CORRECT_PX,
   COMPLETE_PX,
+  SPEED_FACTOR,
   updatePixelConstants,
 } from "./constants.js";
 import { shuffleArray } from "./utils.js";
@@ -40,10 +41,12 @@ export class Game {
     this.t = 0;
     this.baseY = this.canvas.height;
     this.destY = this.baseY;
-    this.riseSpeed = Math.round((100 * this.canvas.height) / 10000) / 27;
     this.elapsedTime = 0;
 
-    console.log("Rise speed:", this.riseSpeed);
+    // Calculate initial rise speed
+    this.updateRiseSpeed();
+
+    console.log("Initial rise speed:", this.riseSpeed);
 
     // House position
     this.boxX = this.canvas.width / 2 - BOX_WIDTH / 2;
@@ -119,10 +122,17 @@ export class Game {
     }
   }
 
+  updateRiseSpeed() {
+    const speedFactor = getSpeedFactor(BUTTON_COUNT);
+    this.riseSpeed =
+      Math.round((100 * this.canvas.height) / 10000) / speedFactor;
+  }
+
   nextRound() {
     if (this.gameOver) return;
     if (BUTTON_COUNT < 9) {
       updatePixelConstants(BUTTON_COUNT + 1);
+      this.updateRiseSpeed(); // Update speed for new level
       this.newRound();
     } else if (BUTTON_COUNT == 9) {
       this.flashMessage.show("You Win!", true);
